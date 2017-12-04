@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>抖动函数</title>
+	<style type="text/css">
+        img {
+        	position: absolute;
+        	width: 200px;
+        	left: 200px;
+        	top: 200px;
+        }
+	</style>
+	<script type="text/javascript">
+        var arr = [];// reseve left value
+        var num = 0;//call left vaule
+        var timer = null; 
+        var range = 20;//shaking range
+
+        function leftControl() {
+            for(var i=range;i>0;i-=2) {
+                    arr.push(i,-i);
+                }
+                arr.push(0);
+        }
+        
+        window.onload = function() {    	
+        	var img = document.getElementById('img');//this is the aim of shaking
+            var style = document.defaultView.getComputedStyle(img,null);
+            var left = img.offsetLeft;//get the distance of screen border
+            function leftChanging() {
+                //realize shaking by changing the left value
+                img.style.left = left + arr[num] + 'px'; 
+                num++;
+            }
+
+            img.addEventListener("click",leftControl,false); 
+            clearInterval(timer);
+            timer = setInterval(leftChanging,50)
+        }
+	</script>
+</head>
+<body>
+    <img src="2.png" id="img">
+</body>
+</html>

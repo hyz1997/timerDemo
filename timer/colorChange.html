@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>颜色动画</title>
+	<style type="text/css">
+        #c1 {
+        	width: 200px;
+        	height: 200px;
+        	background: #242928;
+        }
+        #c2 {
+        	width: 180px;
+        	height: 180px;
+        	background: #342928;
+        }
+        #c3 {
+        	width: 160px;
+        	height: 160px;
+        	background: #442927;
+        }
+        #c4 {
+        	width: 140px;
+        	height: 140px;
+        	background: #542926;
+        }
+        #c5 {
+        	width: 120px;
+        	height: 120px;
+        	background: #642925;
+        }
+        #c6 {
+        	width: 100px;
+        	height: 100px;
+        	background: #742924;
+        }
+        #c7 {
+        	width: 80px;
+        	height: 80px;
+        	background: #842923;
+        }
+        #c8 {
+        	width: 60px;
+        	height: 60px;
+        	background: #942922;
+        }
+	</style>
+	
+</head>
+<body>
+    <div id="c1">
+    	<div id="c2">
+    		<div id="c3">
+    			<div id="c4">
+    				<div id="c5">
+    					<div id="c6">
+    						<div id="c7">
+    							<div id="c8"></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <script>
+        var colorArr = ['#942922','#842922','#742922','#642922','#542922','#442922','#342922','#242928'];
+        var n=1;
+        function fn () {
+            var N =Math.abs(n); 
+            if(n==8) {
+                n=0;
+            } else if (n==-8) {
+                n=1;
+            }
+            console.log(n);
+            if(n>0) {
+                var c=document.getElementById('c'+n);
+                c.style.backgroundColor = colorArr[n-1];
+                n++;   
+            } else {
+                n--; 
+                var c=document.getElementById('c'+N);
+                c.style.backgroundColor = colorArr[8-N];
+                
+            }       
+            
+        }
+        window.onload = function() {  
+            var timer = null; 
+            clearInterval(timer);
+            timer = setInterval(fn,1000); 
+        }
+    </script>
+</body>
+</html>

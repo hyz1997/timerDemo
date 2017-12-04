@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=Utf-8" />
+	<title>计时器</title>
+	<script type="text/javascript">     
+        var num = 0;
+        var i = 0; 
+        var arr=['red','#FF9D0C','#DBFF0D','#3BFF0D','#0DFFA2','#0DE8FF','#0D52FF','#210DFF','#930DFF','#FF0DB4'];
+        function clock(){
+            var time=new Date();
+            document.getElementById("clock").innerHTML=time;  
+
+        }
+        window.onload = function() {
+            var timerTime = null; 
+            clearInterval(timerTime);
+            timerTime = setInterval(clock,1000);  
+            var timerColor = null; 
+            var start = document.getElementById('start');
+            var stop = document.getElementById('stop');
+            var prizeDraw = document.getElementById('prizeDraw');
+            start.onclick = function() {
+                clearInterval(timerColor);
+                timerColor = setInterval(function(){ 
+                    num = Math.floor(Math.random()*100+1);
+                    prizeDraw.style.backgroundColor = arr[i];
+                    i++;
+                    if (i==9) {
+                        i = 0;
+                    };
+                    prizeDraw.innerHTML = num;
+                },100);
+            }
+            stop.onclick = function() {
+                clearInterval(timerColor);
+            }
+
+        }
+        
+        
+
+	</script>
+</head>
+<body>
+	<div id="clock"></div>
+    <div id="prizeDraw" style="width: 100px;height: 100px; text-align: center;line-height: 100px; font-size: 20px;">抽号</div>
+    <button id="start">开始</button>
+    <button id="stop">停止</button>
+</body>
+</html>
