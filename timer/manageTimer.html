@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+        #square {
+        	position: relative;
+        	left: 0;
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        }
+	</style>
+	<script type="text/javascript">
+        window.onload = function() {
+        	var input = document.getElementsByTagName('input');
+            var forward = document.getElementById('forward');
+            var back = document.getElementById('back');
+            var square = document.getElementById('square');
+            var speed=0;
+            var timer = null;
+            forward.onclick = function() {
+        	    clearInterval(timer)
+        	    if(speed<400) {
+        	    	timer = setInterval(function() {
+        	    	    
+        	    	    speed=speed+10;
+        	    	    square.style.left = speed +"px";
+                        if(speed>=400) {
+                           clearInterval(timer); 
+                        }
+        	        },50);
+        	    }   	            	    
+            }
+            back.onclick = function() {
+                clearInterval(timer) 
+                if(speed>0) {
+                    timer = setInterval(function() {
+                        speed=speed-10;
+                        square.style.left = speed +"px";
+                        if (speed<=0) {
+                            console.log(speed);
+                            clearInterval(timer);
+                        } 
+                    },50);
+                }
+            }
+        } 
+        
+	</script>
+</head>
+<body>
+    <input type="button" value="向前" id="forward">
+    <input type="button" value="向后" id="back">
+    <div id="square"></div>
+</body>
+</html>
